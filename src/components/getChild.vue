@@ -1,0 +1,42 @@
+<template>
+    <div>
+        <Card></Card>
+        <tree :data="data"></tree>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { reactive } from 'vue';
+import Card from '../globalComponents/card.vue';
+import tree from '../globalComponents/tree.vue';
+interface Tree {
+    name: string,
+    check: boolean,
+    children?: [Tree]
+}
+let data = reactive<Tree[]>([
+    {
+        name: '1',
+        check: true,
+        children: [{
+            name: '1-1',
+            check: false,
+        }]
+    },
+    {
+        name: '2',
+        check: false,
+        children: [
+            {
+                name: '2-1',
+                check: true
+            }
+        ]
+    }
+])
+defineExpose(
+    data,
+)
+</script>
+
+<style scoped></style>
