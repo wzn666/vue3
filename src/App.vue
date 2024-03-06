@@ -43,9 +43,13 @@ let ops = (params: any) => {
 </script>
 
 <template>
+  <keep-alive>
+
+    <table1 ref="ref2" v-if="hideComponent" :title="name"></table1>
+  </keep-alive>
   <getChild ref="child"> </getChild>
-  <table1 ref="ref2" v-if="hideComponent" :title="name"></table1>
   <vueComponent ref="vue1" @children="ops"></vueComponent>
+
   <div>{{ msg }}
   </div>
   <button class="yy-btn" @click="changes">button</button>
