@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <div v-if="modelValue">
+        <h3>{{ modelValue }}</h3>
+        <button @click="close">开关</button>
         <Card></Card>
         <tree :data="data"></tree>
     </div>
@@ -37,6 +39,15 @@ let data = reactive<Tree[]>([
 defineExpose(
     data,
 )
+defineProps<{
+    modelValue: boolean
+}>()
+
+let emit = defineEmits(['update:modelValue'])
+
+const close = () => {
+    emit('update:modelValue', false)
+}
 </script>
 
 <style scoped></style>

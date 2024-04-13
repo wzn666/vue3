@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vue/compiler-core": "^3.4.21",
+    "@vue/compiler-sfc": "^3.4.21",
     "element-plus": "^2.6.0",
+    "lodash": "^4.17.21",
     "scss": "^0.2.4",
     "vue": "^3.4.19"
   },
