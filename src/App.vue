@@ -2,10 +2,9 @@
 import {
   Ref, ref,
   onMounted, Directive, DirectiveBinding, resolveComponent, getCurrentInstance,
-  useAttrs
+  useAttrs,
 } from 'vue'
-
-
+// import useResize from 'resize-wzn-vue'
 import vueComponent from './components/name.vue'
 // import table1 from './components/table.vue'
 // import vmodel from './components/vmodel.vue'
@@ -18,10 +17,10 @@ import lazyLoad from './components/lazyLoad.vue';
 // import Card from './globalComponents/card.vue'
 const vue1 = ref<InstanceType<typeof vueComponent>>()
 onMounted(() => {
-
-  // console.log(vue1.value?.num);
-
-  // vue1.value?.handle()
+  // let el = document.querySelector('#resize') as HTMLElement
+  // useResize(el,(e:any)=>{
+  //   console.log(e.height,e.width);
+  // })
 })
 
 let name: string = '张三'
@@ -118,10 +117,21 @@ const vMove: Directive<any, string> = (el: HTMLElement, bind: DirectiveBinding) 
 //   // console.log('00000', a);
 
 // }
+const htmlResize = (el:HTMLElement)=>{
+  // console.log(el);
+  
+}
+const a = getCurrentInstance()
+console.log(a?.proxy?.$filters.format('wzn'));
+a?.proxy?._loading?.hide()
 </script>
 
 <template>
-  <lazyLoad :name="1234" :age="888"></lazyLoad>
+  <div v-resize="htmlResize" id="resize">
+    <span>{{ $filters.format('world') }}</span>
+    <img src="./assets/images/5.jpg" alt="" srcset="">
+  </div>
+  <!-- <lazyLoad :name="1234" :age="888"></lazyLoad> -->
   <!-- {{ l($setup) }} -->
   <!-- <vmodel></vmodel> -->
   <!-- <div fallback="没有权限" v-hasPermission.fallback="['123']">
@@ -150,6 +160,17 @@ const vMove: Directive<any, string> = (el: HTMLElement, bind: DirectiveBinding) 
 </template>
 
 <style lang="scss" scoped>
+#resize{
+  border: 1px solid #ccc;
+  overflow: hidden;
+  resize: both;
+  width: 300px;
+  height: 500px;
+  img{
+    width: 80%;
+    height: 85%;
+  }
+}
 .box {
   width: 300px;
   height: 200px;
